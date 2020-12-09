@@ -1,0 +1,15 @@
+<h1>CURRENT TURN: {{ this.currentTurn }}</h1>
+<h2>MOVES: {{ this.moveCount }} / {{ this.squares.length }}</h2>
+<button (click)="newGame()">Start a New Game</button>
+<h2 *ngIf="winner">
+  <div *ngIf="winner !== 'TIE'; then showPlayerMsg; else showTieMsg"></div>
+  <ng-template #showPlayerMsg>Player {{ winner }} won the game!</ng-template>
+  <ng-template #showTieMsg>Tie game!</ng-template>
+</h2>
+<main>
+  <app-square
+    *ngFor="let val of squares; let i = index"
+    [value]="val"
+    (click)="makeMove(i)"
+  ></app-square>
+</main>
